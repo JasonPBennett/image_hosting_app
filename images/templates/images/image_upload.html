@@ -1,0 +1,36 @@
+<h1>
+    <img src="https://png.pngtree.com/png-vector/20191129/ourmid/pngtree-image-upload-icon-photo-upload-icon-png-image_2047547.jpg" alt="Upload Icon" style="width: 100px; height: 100px;"> Upload Image
+</h1>
+
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <img id="preview" src="#" alt="Image preview" style="display: none;">
+    <p id="size"></p>
+    <button type="submit">Upload</button>
+</form>
+
+<script>
+    document.getElementById('id_image').addEventListener('change', function(e) {
+        var file = e.target.files[0];
+        var reader = new FileReader();
+        reader.onloadend = function() {
+            document.getElementById('preview').src = reader.result;
+            document.getElementById('preview').style.display = 'block';
+            var sizeInMB = (file.size / (1024*1024)).toFixed(2);  // Convert size to MB
+            document.getElementById('size').textContent = 'Size: ' + sizeInMB + ' MB';
+        }
+        reader.readAsDataURL(file);
+    });
+</script>
+{% if message %}
+    <hr>
+    <p>{{ message }}</p>
+{% endif %}
+{% if image %}
+    <a href="{% url 'image_view' %}">View all images</a>
+{% endif %}
+<hr>
+<form action="{% url 'home' %}" method="get">
+    <button type="submit">Home</button>
+</form>

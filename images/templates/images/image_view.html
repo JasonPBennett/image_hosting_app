@@ -1,0 +1,26 @@
+<h1>
+    <img src="https://png.pngtree.com/png-vector/20190729/ourlarge/pngtree-find-search-view-glass-blue-dotted-line-line-icon-png-image_1622078.jpg" alt="View Icon" style="width: 100px; height: 100px;"> View Images
+</h1>
+
+{% for image in images %}
+    <div>
+        <img src="{{ image.image.url }}" alt="Image" style="width: 100px; height: 100px;">
+        <form method="post" style="display: inline;">
+            {% csrf_token %}
+            <input type="hidden" name="image_id" value="{{ image.id }}">
+            <button type="submit">Delete</button>
+        </form>
+    </div>
+{% endfor %}
+
+<hr>
+<form method="post" onsubmit="return confirm('Are you sure you want to delete all images?');">
+    {% csrf_token %}
+    <input type="hidden" name="delete_all" value="true">
+    <button type="submit">Delete All Images</button>
+</form>
+
+<hr>
+<form action="{% url 'home' %}" method="get">
+    <button type="submit">Home</button>
+</form>
