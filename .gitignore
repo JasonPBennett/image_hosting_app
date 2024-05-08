@@ -1,0 +1,28 @@
+# Ignore files in the media directory
+/media/*
+
+# Ignore files in the static directory
+/static/*
+
+# Ignore the database file
+/db.sqlite3
+
+# Ignore the virtual environment
+/venv/
+
+# Ignore any compiled Python files
+*.pyc
+
+# Ignore the local settings file
+/local_settings.py
+
+# Ignore the IDE specific files
+.vscode/
+.idea/
+*.pydevproject
+
+# Ignore any log files
+*.log
+
+# Ignore any cache files
+__pycache__/
